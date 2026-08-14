@@ -1,0 +1,29 @@
+.empty-state {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.empty-state__title {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+}
+
+.empty-state__message {
+  color: var(--color-text-dim);
+  font-family: var(--font-body);
+}
+
+.empty-state--error {
+  border-color: var(--color-red);
+}
+
+.empty-state--error .empty-state__title {
+  color: var(--color-red);
+}

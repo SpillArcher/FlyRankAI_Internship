@@ -1,0 +1,89 @@
+:root {
+  color-scheme: dark;
+
+  /* Blue / Purple / Yellow palette */
+  --color-bg: #071028; /* deep navy */
+  --color-surface: #0f1830; /* dark indigo */
+  --color-surface-raised: #162041; /* raised panel */
+  --color-border: #27344f; /* muted indigo */
+  --color-gold: #ffd166; /* yellow accent */
+  --color-gold-dim: #e6b800; /* darker yellow */
+  --color-red: #d04b5b; /* accent red (kept for errors) */
+  --color-teal: #6fb3ff; /* blue accent */
+  --color-text: #f8fbff; /* off-white */
+  --color-text-muted: #c9d6f6;
+  --color-text-dim: #9fb0dc;
+
+  /* Type */
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-body: 'Fraunces', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(255, 209, 102, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(123, 58, 255, 0.06), transparent 40%);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
