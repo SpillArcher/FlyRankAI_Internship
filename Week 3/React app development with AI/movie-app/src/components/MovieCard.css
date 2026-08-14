@@ -1,0 +1,93 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+}
+
+.movie-card__poster-button {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.movie-card__poster-button:hover {
+  border-color: var(--color-gold-dim);
+  transform: translateY(-2px);
+}
+
+.movie-card__poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+/* Signature detail: a film-strip perforation strip along the poster's edge. */
+.movie-card__sprockets {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  z-index: 1;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(circle, var(--color-surface) 2.5px, transparent 2.6px);
+  background-size: 10px 14px;
+  background-position: center;
+  opacity: 0.85;
+}
+
+.movie-card__favorite {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgba(21, 14, 12, 0.75);
+  color: var(--color-text-dim);
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.movie-card__favorite:hover {
+  transform: scale(1.08);
+  color: var(--color-gold);
+}
+
+.movie-card__favorite--active {
+  color: var(--color-gold);
+  border-color: var(--color-gold-dim);
+}
+
+.movie-card__title {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movie-card__meta {
+  display: flex;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+}
