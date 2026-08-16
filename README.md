@@ -4,10 +4,10 @@
 FlyRankAI is a capstone project built during a Front End Engineering internship at FlyRank — an organic growth platform that helps D2C and SaaS brands scale traffic through SEO, AEO, and multilingual localization. This project applies those principles to a real, interactive frontend build.
 
 ## Stack
-- HTML5 — semantic markup only (header, main, footer — avoiding div/span soup)
-- CSS3 — Flexbox for 1D layouts, Grid for 2D layouts, box-sizing: border-box throughout
-- JavaScript (ES6+) — destructuring, template literals, arrow functions, async/await
-- React — data handling via map/filter/reduce
+- HTML5 - semantic markup only (header, main, footer — avoiding div/span soup)
+- CSS3 - Flexbox for 1D layouts, Grid for 2D layouts, box-sizing: border-box throughout
+- JavaScript - destructuring, template literals, arrow functions, async/await
+- React - data handling via map/filter/reduce
 - Deployment: Vercel
 
 ## Accessibility & UX Standards
