@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #17131f;
+  --color-paper: #faf8fc;
+  --color-accent: #d6295f;
+  --color-signal: #4f46e5;
+  --color-price: #ea580c;
+  --color-success: #16a34a;
+  --color-border: #e3ddf0;
+
+  --font-display: var(--font-display-src), serif;
+  --font-sans: var(--font-body-src), sans-serif;
+  --font-mono: var(--font-mono-src), monospace;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+a {
+  transition: color 0.15s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+@keyframes float-blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -18px) scale(1.06);
+  }
+  66% {
+    transform: translate(-18px, 12px) scale(0.94);
+  }
+}
+
+.ambient-blob {
+  animation: float-blob 14s ease-in-out infinite;
+}
