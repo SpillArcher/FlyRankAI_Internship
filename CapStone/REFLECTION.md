@@ -1,7 +1,5 @@
 # Reflection - Style Stylist
 
-> This is a **draft starting point**, not your finished reflection. I pulled the raw material from what actually happened in your build (the provider swap, the env file confusion, the anti-hallucination decision) - but "hardest" and "surprising" are about your actual experience, not mine. Read each section, keep what's true, cut or rewrite what isn't. A generic-sounding reflection is exactly what this rubric is checking for, so the more specific you make this to what you actually struggled with, the better it'll read.
-
 ## What was hardest, and why
 
 One real friction point in the build: the AI integration was originally written for the Claude API, then swapped to Gemini mid-project because that's the key you actually had available to test with. That's a bigger change than it sounds - it's not just a different API endpoint, it's a different approach to getting structured output (Gemini's `responseSchema` versus prompt-only JSON), which meant re-thinking how to guarantee the response could actually be parsed instead of just hoping the model followed instructions.
