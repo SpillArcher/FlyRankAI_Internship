@@ -127,6 +127,7 @@ export default function StyleQuiz() {
                 key={interest}
                 type="button"
                 onClick={() => toggleInterest(interest)}
+                suppressHydrationWarning
                 aria-pressed={interests.includes(interest)}
                 className={`rounded-full border px-4 py-1.5 text-sm ${
                   interests.includes(interest)
@@ -150,6 +151,7 @@ export default function StyleQuiz() {
                 key={label}
                 type="button"
                 onClick={() => setFavoriteColor(label)}
+                suppressHydrationWarning
                 aria-pressed={favoriteColor === label}
                 className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm ${
                   favoriteColor === label

@@ -80,6 +80,7 @@ export default function Nav() {
           <button
             type="button"
             onClick={openDrawer}
+            suppressHydrationWarning 
             aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
             className="relative rounded-md border border-border p-2 text-ink hover:border-signal hover:text-signal"
           >
@@ -122,6 +123,7 @@ export default function Nav() {
                 href={link.href}
                 className="block py-2 text-ink/70 hover:text-signal"
                 onClick={() => setOpen(false)}
+                suppressHydrationWarning
               >
                 {link.label}
               </Link>
