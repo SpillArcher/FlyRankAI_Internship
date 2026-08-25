@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { localImage } from "@/lib/local-image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/cart-context";
 
@@ -65,7 +66,7 @@ export default function CartPage() {
                 >
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md border border-border bg-white">
                     <Image
-                      src={item.image}
+                      src={localImage(item.image)}
                       alt={item.title}
                       fill
                       sizes="96px"

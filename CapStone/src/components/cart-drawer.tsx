@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { localImage } from "@/lib/local-image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/context/cart-context";
 
@@ -58,7 +59,7 @@ export default function CartDrawer() {
                   >
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md bg-white">
                       <Image
-                        src={item.image}
+                        src={localImage(item.image)}
                         alt={item.title}
                         fill
                         sizes="64px"

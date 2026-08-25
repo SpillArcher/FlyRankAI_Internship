@@ -49,18 +49,6 @@ function detectCurrentSeason(): string {
   return "Winter";
 }
 
-// fakestoreapi.com's images are stable and always real, but keep a
-// defensive fallback in case a URL is ever malformed rather than let
-// next/image throw.
-function getDisplayImage(url: string): string {
-  try {
-    new URL(url);
-    return url;
-  } catch {
-    return "/no-photo.svg";
-  }
-}
-
 export default function StyleQuiz() {
   const [interests, setInterests] = useState<string[]>([]);
   const [favoriteColor, setFavoriteColor] = useState("");
@@ -301,7 +289,7 @@ export default function StyleQuiz() {
                 >
                   <div className="relative aspect-square w-full overflow-hidden rounded-md bg-white">
                     <Image
-                      src={getDisplayImage(pick.product.image)}
+                      src={pick.product.image}
                       alt={pick.product.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { localImage } from "@/lib/local-image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useWishlist } from "@/context/wishlist-context";
 import AddToCartButton from "@/components/add-to-cart-button";
@@ -43,7 +44,7 @@ export default function WishlistPage() {
                   className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-white"
                 >
                   <Image
-                    src={item.image}
+                    src={localImage(item.image)}
                     alt={item.title}
                     fill
                     sizes="96px"
