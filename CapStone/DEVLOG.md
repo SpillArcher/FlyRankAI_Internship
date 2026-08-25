@@ -4,9 +4,9 @@ A record of how this project actually got built: the steps, the pivots, the impr
 
 ## Where it started
 
-The original plan for this capstone was a different project entirely - an SEO/AEO tool for a fictional platform, with an AI-powered content grader as the first AI integration attempt. Partway through, I proposed a much more ambitious idea instead: an AI stylist that reads a person's mood, colors, and the occasion, and recommends real clothing based on that context instead of forcing rigid category filters.
+The original plan for this capstone was a different project entirely - an SEO/AEO tool for a fictional platform, with an AI-powered content grader as the first AI integration attempt. Partway through, I proposed a much more ambitious idea which is an AI stylist that reads a person's mood, colors, and the occasion, and recommends real clothing based on that context instead of forcing rigid category filters.
 
-Before building it, I got honest pushback on the architecture I'd first imagined (a full vector-database/RAG pipeline with on-device inference). The counter-argument: with a catalog this small, a vector database solves a scale problem I didn't have, and on-device inference is a serious project on its own with no real benefit for a demo. I agreed and went with a much simpler design - send the relevant catalog directly to the LLM in the prompt and let it reason over it. Same core idea, dramatically less infrastructure.
+Before building it, I got honest pushback on the architecture I'd first imagined (a full vector-database/RAG pipeline with on-device inference). The counter-argument is : with a catalog this small, a vector database solves a scale problem I didn't have, and on-device inference is a serious project on its own with no real benefit for a demo. I agreed and went with a much simpler design - send the relevant catalog directly to the LLM in the prompt and let it reason over it. Same core idea, dramatically less infrastructure.
 
 I decided to replace the original project entirely rather than bolt the stylist onto it, since the two ideas didn't share a brand or a purpose.
 
