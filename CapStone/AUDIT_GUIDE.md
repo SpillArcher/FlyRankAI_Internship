@@ -1,4 +1,4 @@
-# Performance & Accessibility Audit Guide - Style Stylist
+# Performance & Accessibility Audit Guide - Stylist
 
 Run these against the **live deployed URL**, not localhost - production builds are optimized differently (minification, caching headers, CDN), so a localhost score isn't representative.
 
