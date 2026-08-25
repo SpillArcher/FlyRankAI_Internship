@@ -1,4 +1,4 @@
-# Deployment Checklist - Style Stylist
+# Deployment Checklist - Stylist
 
 Fill this out as you actually complete each step, then sign off at the bottom. Don't check something you haven't verified.
 
