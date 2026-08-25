@@ -126,7 +126,7 @@ const PRODUCTS: Product[] = [
   title: "Flannel Shirt",
   price: 49.99,
   description: "A brushed cotton flannel in a classic plaid, soft and warm.",
-  image: "/products/mens-flannel-shirt.webp",
+  image: "/products/men-flannel-shirt.webp",
   category: "men's clothing",
 },
 {
