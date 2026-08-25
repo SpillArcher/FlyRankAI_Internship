@@ -4,8 +4,6 @@
 
 One real friction point in the build: the AI integration was originally written for the Claude API, then swapped to Gemini mid-project because that's the key you actually had available to test with. That's a bigger change than it sounds - it's not just a different API endpoint, it's a different approach to getting structured output (Gemini's `responseSchema` versus prompt-only JSON), which meant re-thinking how to guarantee the response could actually be parsed instead of just hoping the model followed instructions.
 
-[Was this actually the hardest part for you, or was it something else - the Platzi API filtering, getting the anti-hallucination lookup right, the deployment/env-variable setup, something in testing or the audit? Replace this if it's not accurate.]
-
 ## What I'd do differently next time
 
 Testing with a real API key happened late - after the code was written and "verified" only by the fact that it compiled. Compiling clean and actually working are different things, and the gap between them wasn't checked until fairly late in the process.
