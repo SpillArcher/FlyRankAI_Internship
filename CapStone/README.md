@@ -2,7 +2,7 @@
 
 An AI-powered style quiz that recommends real clothing and shoe picks from a live product catalog based on your interests, color preferences, season, and mood.
 
-**Live demo:** [[Stylist](https://github.com/SpillArcher/FlyRankAI_Internship/tree/main/CapStone)]
+**Live demo:** [[Stylist](https://fly-rank-ai-internship.vercel.app/)]
 **Repo:** [[Stylist-repo](https://github.com/SpillArcher/FlyRankAI_Internship/tree/main/CapStone)]
 
 ---
