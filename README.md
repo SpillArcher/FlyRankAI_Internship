@@ -10,7 +10,7 @@ Live on Vercel: [[Stylist](https://fly-rank-ai-internship.vercel.app/)]
 
 An AI-powered style quiz that recommends real clothing and shoe picks from a live product catalog based on your interests, color preferences, season, and mood.
 
-**Repo:** [[Stylist-repo](https://github.com/SpillArcher/FlyRankAI_Internship/tree/main/CapStone)]
+**Repo:** [[Stylist-repo](https://github.com/SpillArcher/FlyRankAI_Internship.git)]
 
 ---
 
