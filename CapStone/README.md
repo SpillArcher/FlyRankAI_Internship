@@ -16,7 +16,7 @@ Style Stylist is a styling quiz for anyone who finds a full clothing catalog ove
 ## Setup & Run
 
 ```bash
-git clone https://github.com/SpillArcher/FlyRankAI_Internship/tree/main/CapStone
+git clone https://github.com/SpillArcher/FlyRankAI_Internship.git
 cd FlyRankAI_Internship/Capstone
 npm install
 ```
