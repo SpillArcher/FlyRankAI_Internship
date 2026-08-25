@@ -18,7 +18,7 @@ Fill this out as you actually complete each step, then sign off at the bottom. D
 -  Project imported into Vercel (or your chosen host)
 -  `GEMINI_API_KEY` added in Vercel → Project Settings → Environment Variables for **both** Production and Preview
 -  Deployment succeeded with no build errors on the host
--  Live URL loads: [[Stylist](https://github.com/SpillArcher/FlyRankAI_Internship/tree/main/CapStone)]
+-  Live URL loads: [[Stylist](https://fly-rank-ai-internship.vercel.app/)]
 
 ## Post-Deploy Verification
 
