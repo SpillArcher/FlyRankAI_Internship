@@ -27,7 +27,7 @@ export default function HomePage() {
       </h1>
       <p className="mt-6 max-w-xl text-ink/70">
         Skip the filters. Tell us your interests, your colors, and what
-        today feels like — the AI does the rest, picking from real items in
+        today feels like and the AI does the rest, picking from real items in
         the catalog and explaining why each one fits.
       </p>
 
