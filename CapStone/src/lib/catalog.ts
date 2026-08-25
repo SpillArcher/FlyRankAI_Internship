@@ -11,6 +11,36 @@ export interface Product {
 
 const WEARABLE_CATEGORIES = new Set(["men's clothing", "women's clothing"]);
 
+// A generic serverless fetch (no User-Agent, datacenter IP) occasionally
+// gets caught by fakestoreapi.com's bot/rate-limit protection — this has
+// shown up as intermittent failures specifically from Vercel, not from
+// local dev. A browser-like header plus a short timeout + one retry
+// smooths over that without waiting indefinitely on a hung request.
+async function fetchWithRetry(url: string, attempt = 1): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+
+  try {
+    const res = await fetch(url, {
+      cache: "no-store",
+      signal: controller.signal,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "application/json",
+      },
+    });
+    return res;
+  } catch (err) {
+    if (attempt < 2) {
+      return fetchWithRetry(url, attempt + 1);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 /**
  * Fetches every product from fakestoreapi.com. The write endpoints on this
  * API don't actually persist data, so the 20-product dataset stays fixed
@@ -18,8 +48,10 @@ const WEARABLE_CATEGORIES = new Set(["men's clothing", "women's clothing"]);
  * or junk-data filtering needed.
  */
 async function getAllProducts(): Promise<Product[]> {
-  const res = await fetch(`${FAKESTORE_BASE}/products`, { cache: "no-store" });
+  const res = await fetchWithRetry(`${FAKESTORE_BASE}/products`);
   if (!res.ok) {
+    const body = await res.text().catch(() => "(no body)");
+    console.error(`[catalog] fetch failed (${res.status}):`, body);
     throw new Error(`Failed to load products (${res.status})`);
   }
   return res.json();
@@ -47,12 +79,8 @@ export async function getProductsByCategory(
 
 /** A single product by id — used by the product detail page. */
 export async function getProductById(id: number): Promise<Product | null> {
-  const res = await fetch(`${FAKESTORE_BASE}/products/${id}`, {
-    cache: "no-store",
-  });
+  const res = await fetchWithRetry(`${FAKESTORE_BASE}/products/${id}`);
   if (!res.ok) return null;
   const product = await res.json();
-  // fakestoreapi returns `null` (200 OK) for an id it doesn't recognize,
-  // rather than a 404 — worth guarding against explicitly.
   return product && product.id ? product : null;
 }
