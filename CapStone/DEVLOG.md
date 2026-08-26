@@ -4,9 +4,9 @@ A record of how this project actually got built: the steps, the pivots, the impr
 
 ## Where it started
 
-The original plan for this capstone was a different project entirely - an SEO/AEO tool for a fictional platform, with an AI-powered content grader as the first AI integration attempt. Partway through, I proposed a much more ambitious idea which is an AI stylist that reads a person's mood, colors, and the occasion, and recommends real clothing based on that context instead of forcing rigid category filters.
+The original plan for this capstone was a different project entirely - an SEO/AEO tool for a fictional platform, with an AI-powered content grader as the first AI integration attempt. Partway through, I proposed a much more ambitious idea instead: an AI stylist that reads a person's mood, colors, and the occasion, and recommends real clothing based on that context instead of forcing rigid category filters.
 
-Before building it, I got honest pushback on the architecture I'd first imagined (a full vector-database/RAG pipeline with on-device inference). The counter-argument is : with a catalog this small, a vector database solves a scale problem I didn't have, and on-device inference is a serious project on its own with no real benefit for a demo. I agreed and went with a much simpler design - send the relevant catalog directly to the LLM in the prompt and let it reason over it. Same core idea, dramatically less infrastructure.
+Before building it, I got honest pushback on the architecture I'd first imagined (a full vector-database/RAG pipeline with on-device inference). The counter-argument: with a catalog this small, a vector database solves a scale problem I didn't have, and on-device inference is a serious project on its own with no real benefit for a demo. I agreed and went with a much simpler design - send the relevant catalog directly to the LLM in the prompt and let it reason over it. Same core idea, dramatically less infrastructure.
 
 I decided to replace the original project entirely rather than bolt the stylist onto it, since the two ideas didn't share a brand or a purpose.
 
@@ -53,12 +53,18 @@ I decided to replace the original project entirely rather than bolt the stylist 
 
 **Invalid HTML caught before it shipped.** Adding a staggered entrance animation to the product grid wrapped each card in a `<motion.div>` inside a `<ul>`, which puts an invalid element between `<ul>` and `<li>`. Caught and fixed by using `<motion.li>` directly instead, before it ever reached a browser.
 
+**`fakestoreapi.com` failing intermittently, specifically on Vercel.** After deploying, `/api/style` started returning `502`s in production while working fine locally. Vercel's request-trace view showed each failing request making exactly one external call and finishing in under 400ms - too fast to be a timeout, consistent with the very first outbound fetch (the catalog request) failing immediately. Tried a browser-like `User-Agent` header, a request timeout, and an automatic retry, on the theory that a generic serverless `fetch` from a shared datacenter IP was getting caught by bot/rate-limit protection that a normal browser wouldn't trigger. It didn't fix it - the failures continued at the same rate even with those changes in place, meaning the actual cause was never fully confirmed.
+
+**The real fix: stop depending on it at all.** Rather than keep chasing an intermittent, hard-to-diagnose failure in a service outside my control, migrated the catalog a second time - from `fakestoreapi.com` to a static, local array of products defined directly in the codebase, with images served from `/public` or linked directly by URL. This removes every failure mode above at once: nothing to rate-limit, nothing to time out, nothing that can go down between now and when this gets graded. In hindsight, this should have been the first design, not the third - a capstone that needs to reliably work on a specific day doesn't benefit from a "live" data source if that live source is outside my control and has no uptime guarantee.
+
+**Stale `localStorage` data crashing after the catalog migration.** After moving to local/pasted image URLs, a wishlist item saved from before the migration - still holding an old `fakestoreapi.com` image URL - crashed the page, since that host was no longer an allowed image source. Fixed properly by setting `images.unoptimized: true` in `next.config.ts`, which removes the host-allowlist requirement entirely rather than trying to maintain one.
+
 ## Known limitations
 
-- The catalog is genuinely small (20 products total, fixed by the data source) - real variety in recommendations is limited by that ceiling.
+- The catalog is static - adding a new product means editing code directly, not using an admin UI.
 - Checkout is an intentional mock - clearly labeled as a demo, no real payment processing.
 - No automated accessibility audit has been run yet (planned next).
 
 ## What I'd do differently
 
-Pin AI model names to a specific, stable version from the start rather than an auto-updating `-latest` alias - three of the errors above trace back to chasing a moving target instead of a fixed one. And I'd pick the data source's stability as a first-class requirement before writing any code against it, not after debugging around its volatility for several rounds.
+Pin AI model names to a specific, stable version from the start rather than an auto-updating `-latest` alias - three of the errors above trace back to chasing a moving target instead of a fixed one. And I'd treat a live third-party data source's *reliability*, not just its data shape, as a first-class requirement before writing any code against it - two separate external APIs caused real problems in this build, and the fix both times was ultimately to stop depending on them, not to work around them harder.

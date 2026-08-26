@@ -20,6 +20,7 @@ lighthouse https://your-live-url.vercel.app --preset=desktop --view
 ```
 
 If your score is under 90, don't just note the number - open the Lighthouse report's "Opportunities" and "Diagnostics" sections, they tell you exactly what's costing points (common ones for a Next.js app: unoptimized images, render-blocking resources, missing `next/font` usage, large JS bundles from unused dependencies).
+![alt text](<Screenshot 2026-08-26 224204.png>)
 
 ## 2. Accessibility Audit (WAVE or axe)
 
@@ -33,7 +34,7 @@ If your score is under 90, don't just note the number - open the Lighthouse repo
 2. Open your live URL, open DevTools → axe DevTools tab.
 3. Click "Scan all of my page."
 4. Screenshot the results - ideally "0 issues," but if there are issues, screenshot those too and fix what you can before re-scanning.
-
+![alt text](<Screenshot 2026-08-26 224508.png>)
 **Common things to check specifically, given this app's UI (a quiz form + result cards):**
 - Every form input has an associated `<label>` (not just a placeholder - placeholders don't meet WCAG labeling requirements).
 - Buttons have accessible names (`aria-label` if icon-only).
@@ -41,3 +42,4 @@ If your score is under 90, don't just note the number - open the Lighthouse repo
 - Images (product photos) have meaningful `alt` text, not empty `alt=""` unless they're purely decorative.
 - The results section is announced to screen readers when it appears (e.g., `aria-live="polite"` on the container that shows the stylist note, since it renders after an async fetch with no page navigation).
 - Keyboard-only navigation: tab through the whole quiz and submit without touching the mouse - this alone catches a lot of what automated scanners miss.
+![alt text](<Screenshot 2026-08-26 012513.png>)
